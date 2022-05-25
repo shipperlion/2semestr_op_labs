@@ -29,7 +29,7 @@ class TDate1 : public TDate
 {
 public:
 	TDate1();
-	TDate1(TDate1 &obj);
+	TDate1(TDate1& obj);
 	void showDate() override;
 };
 

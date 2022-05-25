@@ -19,9 +19,9 @@ TDate::TDate(int day, int month, int year)
 }
 
 TDate::TDate(string line) {
-	day = stoi(line.substr(0,2));
-	month = stoi(line.substr(3,2));
-	year = stoi(line.substr(6,4));
+	day = stoi(line.substr(0, 2));
+	month = stoi(line.substr(3, 2));
+	year = stoi(line.substr(6, 4));
 }
 
 TDate::TDate(TDate& obj) {
@@ -58,33 +58,33 @@ TDate* TDate::increaseDate()
 	cout << "Days: "; cin >> ind;
 	cout << "Months: "; cin >> inm;
 	cout << "Years: "; cin >> iny;
-	int months[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	int months[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	if (day + ind > months[month - 1])
+	{
+		day = (ind + day) - months[month - 1];
+		month++;
+		if (month > 12)
 		{
-			day = (ind + day) - months[month - 1];
-			month++;
-			if (month > 12)
-			{
-				month = 1;
-				year ++;
-			}
+			month = 1;
+			year++;
 		}
-		else
-			day += ind;
-		if (inm + month > 12)
-		{
-			month = (inm + month) % 12;
-			year += (inm + month) / 12;
-		}
-		else
-			month += inm;
-		year += iny;
-		return this;
+	}
+	else
+		day += ind;
+	if (inm + month > 12)
+	{
+		month = (inm + month) % 12;
+		year += (inm + month) / 12;
+	}
+	else
+		month += inm;
+	year += iny;
+	return this;
 }
 
 TDate* TDate::decreaseDate()
 {
-	int ded,dem, dey, tempd = day, tempm = month, tempy = year;
+	int ded, dem, dey, tempd = day, tempm = month, tempy = year;
 	cout << "\nBy how much do you want to decrease the date? "
 		<< "(enter 0 if you don`t want to decrease some value)\n";
 	cout << "Days: "; cin >> ded;
@@ -117,7 +117,7 @@ TDate* TDate::decreaseDate()
 	return this;
 }
 
-void TDate::latestDate(TDate*b, int size1, int size2) 
+void TDate::latestDate(TDate* b, int size1, int size2)
 {
 	TDate latest1(0, 0, 0000), latest2(0, 0, 0000);
 	for (int i = 0; i < size1; i++)
@@ -155,7 +155,7 @@ void TDate::inInterval(TDate* b, int size1, int size2)
 		<< "Day: "; cin >> ed;
 	cout << "Month: "; cin >> em;
 	cout << "Year: "; cin >> ey;
-	TDate starttime(sd, sm, sy), endtime(ed,em,ey);
+	TDate starttime(sd, sm, sy), endtime(ed, em, ey);
 	cout << "Dates that fall within the timeline:\n";
 	for (int i = 0; i < size1; i++)
 	{
@@ -182,7 +182,7 @@ void TDate::showDate()
 
 TDate1::TDate1() :TDate() {}
 
-TDate1::TDate1(TDate1 &obj) {
+TDate1::TDate1(TDate1& obj) {
 	day = obj.day;
 	month = obj.month;
 	year = obj.year;
